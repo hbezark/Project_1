@@ -1,5 +1,10 @@
 import os
 import filecmp
+import operator
+import collections
+
+#Name: Hana Bezark 
+#Worked with Emma Welch
 
 def getData(file):
 #Input: file name
@@ -12,7 +17,18 @@ def getData(file):
 #cases.
 
 	#Your code here:
-	pass
+	lst_of_dict = []
+	filename = open(file)
+	for line in filename:
+		dict = {}
+		d = line.split(",")
+		dict["First"] = d[0]
+		dict["Last"] = d[1]
+		dict["Email"] = d[2]
+		dict["Class"] = d[3]
+		dict["DOB"] = d[4]
+		lst_of_dict.append(dict)
+	return (lst_of_dict[1:])
 
 #Sort based on key/column
 def mySort(data,col):
@@ -20,7 +36,9 @@ def mySort(data,col):
 #Output: Return a string of the form firstName lastName
 
 	#Your code here:
-	pass
+	x = sorted(data, key = operator.itemgetter(col))
+	name = x[0]["First"] + " " + x[0]["Last"]
+	return (name)
 
 #Create a histogram
 def classSizes(data):
