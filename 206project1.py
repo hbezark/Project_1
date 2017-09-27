@@ -48,7 +48,13 @@ def classSizes(data):
 # [('Senior', 26), ('Junior', 25), ('Freshman', 21), ('Sophomore', 18)]
 
 	#Your code here:
-	pass
+	from operator import itemgetter
+	collect = collections.Counter()
+	for d in data:
+		collect[d["Class"]] += 1
+	tup = list(collect.items())
+	x = sorted(tup, key = operator.itemgetter(1), reverse = True)
+	return (x)
 
 
 
@@ -59,7 +65,21 @@ def findDay(a):
 # most often seen in the DOB
 
 	#Your code here:
-	pass
+	day_count = {}
+	for x in a:
+		birth_day = x["DOB"]
+		day = birth_day.split("/")
+		d = day[1]
+		if d not in day_count:
+			day_count[d] = 1
+		else:
+			day_count[d] += 1
+	lst = []
+	for key in day_count.keys():
+		tup = (key, day_count[key])
+		lst.append(tup)
+	sort = sorted(lst, reverse = True, key = lambda x:x[1])
+	return (int(sort[0][0]))
 
 
 # Find the average age (rounded) of the Students
