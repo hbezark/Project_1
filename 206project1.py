@@ -89,7 +89,22 @@ def findAge(a):
 # most often seen in the DOB
 
 	#Your code here:
-	pass
+	age_count = []
+	import datetime
+	now = datetime.datetime.now()
+	for dic in a:
+		birthday = dic["DOB"]
+		date_of_birth = birthday.split("/")
+		y = date_of_birth[2]
+		age = int(now.year) - int(y)
+		age = abs(age)
+		age_count.append(age)
+	count = 0
+	for num in age_count:
+		count += 1
+	sum_of_num = sum(age_count)
+	average_age = int(sum_of_num/count)
+	return (average_age)
 
 #Similar to mySort, but instead of returning single
 #Student, all of the sorted data is saved to a csv file.
@@ -98,7 +113,11 @@ def mySortPrint(a,col,fileName):
 #Output: None
 
 	#Your code here:
-	pass
+	x = sorted(a, key = operator.itemgetter(col))
+	out_file = open(fileName, "w", newline = "\n")
+	for i in x:
+		out_file.write("{},{},{}\n".format(i["First"], i["Last"], i["Email"]))
+	out_file.close()
 
 
 
